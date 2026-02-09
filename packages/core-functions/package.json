@@ -1,0 +1,31 @@
+{
+  "name": "@app/core-functions",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run",
+    "dev": "pnpm run build && concurrently \"tsc -b --watch\" \"func start --worker-runtime node --cwd ../../deploy\"",
+    "clean": "rm -rf dist *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@app/interfaces": "workspace:*",
+    "@app/time-impl": "workspace:*",
+    "@azure/functions": "^4.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "azure-functions-core-tools": "^4.0.6280",
+    "concurrently": "^9.1.2",
+    "typescript": "5.9.3",
+    "vitest": "^3.0.6"
+  }
+}

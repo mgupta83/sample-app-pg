@@ -1,0 +1,21 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "workspaces": {
+    ".": {
+      "ignoreDependencies": [
+        "azure-functions-core-tools",
+        "sonarqube-scanner",
+        "snyk"
+      ],
+      "ignoreBinaries": ["func"]
+    },
+    "packages/*": {}
+  },
+  "ignore": [
+    "rolldown.config.mjs",
+    "prepare-deploy.mjs"
+  ],
+  "ignoreDependencies": [
+    "@rolldown/node"
+  ]
+}
