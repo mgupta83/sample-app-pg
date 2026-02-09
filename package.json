@@ -1,0 +1,34 @@
+{
+  "name": "@app/root",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.15.4",
+  "scripts": {
+    "dev": "pnpm --filter @app/core-functions dev",
+    "build": "pnpm run build:tsc && pnpm run build:bundle && pnpm run build:deploy",
+    "build:tsc": "tsc -b",
+    "build:bundle": "rolldown -c rolldown.config.mjs",
+    "build:deploy": "node prepare-deploy.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "biome:check": "biome check .",
+    "biome:fix": "biome check --write .",
+    "knip": "knip",
+    "audit": "pnpm audit --audit-level moderate",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@rolldown/node": "npm:rolldown@^1.0.0-rc.3",
+    "@types/node": "^22.10.5",
+    "husky": "^9.1.7",
+    "knip": "^5.40.2",
+    "lint-staged": "^15.2.11",
+    "typescript": "5.9.3",
+    "vitest": "^3.0.6"
+  },
+  "lint-staged": {
+    "*.{ts,mjs,json}": ["biome check --write"]
+  }
+}

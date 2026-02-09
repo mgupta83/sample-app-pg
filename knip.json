@@ -1,0 +1,12 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "workspaces": {
+    ".": {
+      "ignoreDependencies": [],
+      "ignoreBinaries": []
+    },
+    "packages/*": {}
+  },
+  "ignore": ["rolldown.config.mjs", "prepare-deploy.mjs", "**/*.d.ts"],
+  "ignoreDependencies": ["@rolldown/node", "@vitest/coverage-v8"]
+}
