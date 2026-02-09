@@ -57,15 +57,21 @@ pnpm prepare
 
 ### Local Development
 
-Start the development server with TypeScript watch mode and Azure Functions host:
+Start the development server with TypeScript watch mode:
 
 ```bash
 pnpm dev
 ```
 
-This runs:
-1. TypeScript compiler in watch mode
-2. Azure Functions host from the `deploy/` directory
+This runs TypeScript compiler in watch mode. To start the Azure Functions host, you need Azure Functions Core Tools v4 installed globally:
+
+```bash
+# Install Functions Core Tools globally
+npm install -g azure-functions-core-tools@4 --unsafe-perm true
+
+# After building, start the Functions host
+cd deploy && func start --worker-runtime node
+```
 
 The HTTP trigger will be available at: `http://localhost:7071/api/time`
 
@@ -119,18 +125,26 @@ Run pnpm audit:
 pnpm audit
 ```
 
-Run Snyk (requires SNYK_TOKEN environment variable):
+Run Snyk (requires SNYK_TOKEN environment variable and Snyk CLI):
 
 ```bash
+# Install Snyk CLI globally
+npm install -g snyk
+
+# Run Snyk
 export SNYK_TOKEN=your-token
-pnpm snyk
+snyk test
 ```
 
-Run SonarCloud (requires SONAR_TOKEN environment variable):
+Run SonarCloud (requires SONAR_TOKEN environment variable and sonar-scanner):
 
 ```bash
+# Install sonar-scanner globally or use via Docker
+npm install -g sonarqube-scanner
+
+# Run SonarCloud
 export SONAR_TOKEN=your-token
-pnpm sonar
+sonar-scanner
 ```
 
 ## Deployment
@@ -265,8 +279,6 @@ The project uses TypeScript project references for efficient incremental builds:
 | `pnpm biome:fix` | Auto-fix formatting and linting issues |
 | `pnpm knip` | Check for unused dependencies |
 | `pnpm audit` | Run pnpm security audit |
-| `pnpm snyk` | Run Snyk security scan |
-| `pnpm sonar` | Run SonarCloud analysis |
 
 ## Git Hooks
 

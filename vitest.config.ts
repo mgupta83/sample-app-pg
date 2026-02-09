@@ -1,6 +1,13 @@
+import { resolve } from "node:path";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      "@app/interfaces": resolve(__dirname, "packages/interfaces/src/index.ts"),
+      "@app/time-impl": resolve(__dirname, "packages/time-impl/src/index.ts"),
+    },
+  },
   test: {
     globals: false,
     environment: "node",

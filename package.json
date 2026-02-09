@@ -16,8 +16,6 @@
     "biome:fix": "biome check --write .",
     "knip": "knip",
     "audit": "pnpm audit --audit-level moderate",
-    "snyk": "snyk test",
-    "sonar": "sonar-scanner",
     "prepare": "husky"
   },
   "devDependencies": {
@@ -27,8 +25,6 @@
     "husky": "^9.1.7",
     "knip": "^5.40.2",
     "lint-staged": "^15.2.11",
-    "sonarqube-scanner": "^4.2.5",
-    "snyk": "^1.1293.1",
     "typescript": "5.9.3",
     "vitest": "^3.0.6"
   },

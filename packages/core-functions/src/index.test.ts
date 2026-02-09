@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from "vitest";
 import type { HttpRequest, InvocationContext } from "@azure/functions";
+import { describe, expect, it, vi } from "vitest";
 import { timeHandler } from "./index.js";
 
 describe("timeHandler", () => {
@@ -15,12 +15,12 @@ describe("timeHandler", () => {
     expect(response.status).toBe(200);
     expect(response.headers).toHaveProperty("Content-Type", "application/json");
     expect(response.body).toBeDefined();
-    
+
     const body = JSON.parse(response.body as string);
     expect(body).toHaveProperty("serverTime");
     expect(body).toHaveProperty("message", "ok");
     expect(typeof body.serverTime).toBe("string");
-    
+
     // Verify serverTime is a valid ISO string
     expect(() => new Date(body.serverTime)).not.toThrow();
   });
@@ -47,8 +47,6 @@ describe("timeHandler", () => {
 
     await timeHandler(mockRequest, mockContext);
 
-    expect(mockContext.log).toHaveBeenCalledWith(
-      "HTTP trigger function processed a request."
-    );
+    expect(mockContext.log).toHaveBeenCalledWith("HTTP trigger function processed a request.");
   });
 });

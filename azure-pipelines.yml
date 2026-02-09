@@ -47,11 +47,11 @@ stages:
             continueOnError: true
 
           - script: |
-              if [ -n "$(SNYK_TOKEN)" ]; then
+              if command -v snyk &> /dev/null && [ -n "$(SNYK_TOKEN)" ]; then
                 echo "Running Snyk security scan..."
-                pnpm run snyk
+                snyk test
               else
-                echo "Snyk token not set, skipping Snyk scan"
+                echo "Snyk CLI not installed or token not set, skipping Snyk scan"
               fi
             displayName: 'Run Snyk security scan'
             env:
@@ -59,11 +59,11 @@ stages:
             continueOnError: true
 
           - script: |
-              if [ -n "$(SONAR_TOKEN)" ]; then
+              if command -v sonar-scanner &> /dev/null && [ -n "$(SONAR_TOKEN)" ]; then
                 echo "Running SonarCloud scan..."
-                pnpm run sonar
+                sonar-scanner
               else
-                echo "SonarCloud token not set, skipping SonarCloud scan"
+                echo "sonar-scanner not installed or token not set, skipping SonarCloud scan"
               fi
             displayName: 'Run SonarCloud analysis'
             env:

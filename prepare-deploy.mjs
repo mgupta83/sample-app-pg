@@ -1,6 +1,6 @@
-import { mkdir, writeFile, copyFile, rm } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import { copyFile, mkdir, rm, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -32,11 +32,7 @@ async function prepareDeployment() {
       },
     };
 
-    await writeFile(
-      resolve(deployDir, "host.json"),
-      JSON.stringify(hostJson, null, 2),
-      "utf-8"
-    );
+    await writeFile(resolve(deployDir, "host.json"), JSON.stringify(hostJson, null, 2), "utf-8");
     console.log("✓ Created host.json");
 
     // Create package.json for deploy

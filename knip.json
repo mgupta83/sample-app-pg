@@ -2,20 +2,11 @@
   "$schema": "https://unpkg.com/knip@5/schema.json",
   "workspaces": {
     ".": {
-      "ignoreDependencies": [
-        "azure-functions-core-tools",
-        "sonarqube-scanner",
-        "snyk"
-      ],
-      "ignoreBinaries": ["func"]
+      "ignoreDependencies": [],
+      "ignoreBinaries": []
     },
     "packages/*": {}
   },
-  "ignore": [
-    "rolldown.config.mjs",
-    "prepare-deploy.mjs"
-  ],
-  "ignoreDependencies": [
-    "@rolldown/node"
-  ]
+  "ignore": ["rolldown.config.mjs", "prepare-deploy.mjs", "**/*.d.ts"],
+  "ignoreDependencies": ["@rolldown/node", "@vitest/coverage-v8"]
 }

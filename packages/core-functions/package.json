@@ -13,7 +13,7 @@
   "scripts": {
     "build": "tsc -b",
     "test": "vitest run",
-    "dev": "pnpm run build && concurrently \"tsc -b --watch\" \"func start --worker-runtime node --cwd ../../deploy\"",
+    "dev": "pnpm run build && concurrently \"tsc -b --watch\" \"echo 'Functions host requires Azure Functions Core Tools v4 - install with: npm install -g azure-functions-core-tools@4'\"",
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "dependencies": {
@@ -23,7 +23,6 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.5",
-    "azure-functions-core-tools": "^4.0.6280",
     "concurrently": "^9.1.2",
     "typescript": "5.9.3",
     "vitest": "^3.0.6"

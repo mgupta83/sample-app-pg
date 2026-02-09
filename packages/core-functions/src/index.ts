@@ -1,6 +1,6 @@
-import type { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import type { TimeProvider } from "@app/interfaces";
 import { ISOTimeProvider } from "@app/time-impl";
+import type { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 
 const timeProvider: TimeProvider = new ISOTimeProvider();
 
@@ -23,7 +23,8 @@ export async function timeHandler(
   };
 
   // Set context.res as required by Functions v4 host model
-  context.res = response;
+  // Note: TypeScript types don't include this, but it's supported at runtime
+  (context as any).res = response;
 
   return response;
 }
